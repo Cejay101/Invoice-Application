@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300;600;700&display=swap');
+:root{
+  --white: #fff;
+  --purple:  #6262ef;
+ --orange:#ff8c00;
+ --green:#3f833f; 
+}
+body {
+  background-color: rgba(3, 3, 22, 0.982);
+  font-family: 'Spartan', sans-serif;
+  font-size: 12px;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  color: var(--white);
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* dashboard */
+.dashboard{
+  width: 800px;
+  margin: 4rem auto;
+}
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.title h2{
+  margin-bottom: 10px;
+  font-size: 2rem;
+font-weight: bold;
+}
+.title-side{
+  display: flex;
+  column-gap: 3rem;
+}
+.new-invoice, .filter{
+  display: flex;
+  align-items: center;
+column-gap: 1rem;
+font-weight: bold;
+}
+.new-invoice{
+  background-color: var(--purple);
+  border-radius: 20px;
+  padding:  8px 10px;
+
+}
+.new-invoice div{
+  background-color: var(--white);
+  padding:8px 9px 5px 9px;
+  border-radius: 50%;
+color:  var(--purple);
+}
+.filter-icon{
+  color: var(--purple);
+}
