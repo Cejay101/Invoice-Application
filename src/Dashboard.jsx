@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useFetch } from "./hooks/useFetch";
+import { useTheme } from "./hooks/useTheme";
 
 // Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { faAngleUp, } from "@fortawesome/free-solid-svg-icons";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { useFetch } from "./hooks/useFetch";
+import NewInvoice from "./components/NewInvoice";
 
 export default function Dashboard() {
   const { filterOpen, setFilterOpen } = useState(false);
+  const [createInvoice, setCreateInvoice] = useState(false);
   const { data, isPending, error } = useFetch("http://localhost:3000/Data");
+  const { mode } = useTheme();
+
+  // console.log(senderStreetAddress)
+  const handleNewInvoice = () => {
+    setCreateInvoice(!createInvoice);
+  };
+  useEffect(() => {}, [createInvoice]);
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${mode}`}>
       <header className="dashboard-header">
         <div className="title">
           <h2>Invoices</h2>
@@ -26,7 +36,8 @@ export default function Dashboard() {
               icon={filterOpen ? faAngleUp : faAngleDown}
             />
           </div>
-          <div className="new-invoice">
+
+          <div onClick={handleNewInvoice} className="new-invoice">
             <div>
               <FontAwesomeIcon className="icon" icon={faPlus} />
             </div>
@@ -35,12 +46,17 @@ export default function Dashboard() {
         </div>
       </header>
       <main>
+        {isPending && <div>Loading ....</div>}
+        {error && <div>{error}</div>}
         {data && (
           <ul className="invoices">
             {data.map((invoice) => (
               <li key={invoice.id} className="invoice">
                 <p className="id">#{invoice.id}</p>
-                <p>Due{` ${new Date (invoice.paymentDue).toDateString().slice(3)}`}</p>
+                <p>
+                  Due
+                  {` ${new Date(invoice.paymentDue).toDateString().slice(3)}`}
+                </p>
                 <p>{invoice.clientName}</p>
                 <p className="total">€{invoice.total}</p>
                 <div
@@ -60,7 +76,17 @@ export default function Dashboard() {
                         : "#ffffff30",
                   }}
                 >
-                  <div className="dot"></div>
+                  <div
+                    className="dot"
+                    style={{
+                      background:
+                        invoice.status === "paid"
+                          ? "var(--green)"
+                          : invoice.status === "pending"
+                          ? "var(--orange)"
+                          : "var(--white)",
+                    }}
+                  ></div>
                   <p>
                     {" "}
                     {invoice.status.charAt(0).toUpperCase() +
@@ -73,6 +99,13 @@ export default function Dashboard() {
           </ul>
         )}
       </main>
+      <div
+        onClick={() => {
+          setCreateInvoice(false);
+        }}
+        className={`${createInvoice ? "overlay" : "hide"}`}
+      ></div>
+      {<NewInvoice createInvoice={createInvoice} />}
     </div>
   );
 }

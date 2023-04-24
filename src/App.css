@@ -1,18 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300;600;700&display=swap");
 :root {
-  --white: #fff;
+  --white: #ebf0f7;
   --purple: #6262ef;
   --orange: #ff8c00;
   --green: #3f833f;
-  --light-background:#131330fa;
+  --light-background: #131330fa;
+  --dark-background: #050514fa;
 }
 body {
-  background-color: rgba(3, 3, 22, 0.982);
   font-family: "Spartan", sans-serif;
   font-size: 12px;
   z-index: 1;
   margin: 0;
   padding: 0;
+  background-color: var(--dark-background);
   color: var(--white);
 }
 * {
@@ -20,17 +21,31 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
+a {
+  text-decoration: none;
+  color: var(--white);
+}
+.light {
+  background-color: var(--white);
+  color: var(--dark-background);
+  transition: 1s;
+}
+.dark {
+  transition: 1s;
+  background-color: var(--dark-background);
+}
 /* dashboard */
 .dashboard {
   width: 800px;
-  margin: 4rem auto;
+  margin: 0rem auto;
+  min-height: 100vh;
 }
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 0;
+  padding-top: 4rem;
 }
 
 .title h2 {
@@ -66,40 +81,39 @@ header {
 
 .invoice {
   background-color: var(--light-background);
+  color: var(--white);
   border-radius: 10px;
   margin-bottom: 1rem;
   display: flex;
-  padding: 1rem  1.5rem;
+  padding: 1rem 1.5rem;
   align-items: center;
   justify-content: space-between;
 }
-.invoice .id{
+.invoice .id {
   font-weight: bold;
 }
 .invoice p {
   width: 18%;
 }
-.invoice .total{
+.invoice .total {
   font-size: 1.2rem;
   font-weight: bold;
   text-align: right;
 }
-.status{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.8rem;
-    border-radius: 10px;
-    width: 15%;
-    margin: auto;
-    gap: 0.5rem;
-
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
+  border-radius: 10px;
+  width: 15%;
+  margin: auto;
+  gap: 0.5rem;
 }
-.status p{
+.status p {
   font-weight: bold;
   text-align: center;
   width: 100%;
-
 }
 .dot {
   height: 7px;
@@ -111,29 +125,173 @@ header {
 
 /* Sidebar */
 
-.sidebar{position: absolute;
+.sidebar {
+  position: absolute;
   top: 0;
   width: 80px;
-  background-color:var(--light-background);
+  background-color: var(--light-background);
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  border-radius:0 20px 20px 0 ;
+  border-radius: 0 20px 20px 0;
+  gap: 1rem;
+  z-index: 2;
 }
-.sidebar img{
-  width: 30px;
+.sidebar img {
+  width: 40px;
   border-radius: 50%;
   display: block;
-  margin:20px  auto;
+  margin: 20px auto;
 }
-.avatar{
-  margin-top:red 2px solid ;
+.toggler img {
+  width: 20px;
 }
-.logo{
+.avatar {
+  margin-top: red 2px solid;
+}
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff10;
+}
+.logo {
   background-color: var(--purple);
   width: 100%;
   height: 80px;
-  border-radius:0 20px 20px 0 ;
+  border-radius: 0 20px 20px 0;
+  position: absolute;
+  top: 0;
+}
+
+/* Add Invoice */
+.overlay{
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000075;
+}
+.add-invoice {
+  /* background-color: firebrick; */
+  width: 700px;
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow:scroll;
+  z-index: 1;
+}
+.add-invoice::-webkit-scrollbar {
+  display: none;
+}
+.hide{
+  left: -100vh;
+}
+.display{
+  left: 0;
+  transition: 1s;
+}
+
+form {
+  width: 600px;
+  height: 100%;
+  padding-left: 70px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.add-invoice h2 {
+  font-size: 1.5rem;
+  margin: 2rem 0;
+  font-weight: bold;
+}
+
+.add-invoice h3 {
+  font-weight: bold;
+  color: var(--purple);
+  margin: 1rem 0;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.span{
+  display: flex;
+  justify-content: space-between;
+}
+input, button {
+  height: 3rem;
+  color: var(--white);
+  border-radius: 5px;
+  padding: 0 0.5rem;
+  background-color: var(--light-background);
+  border: 1px solid #e9e9e910;
+}
+
+form .location {
+  display: flex;
+  justify-content: space-between;
+  /* gap: 2rem; */
+  /* max-width: 90%; */
+}
+.item-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item-list .item-name {
+  width: 40%;
+}
+.item-list .qty,
+.item-list .total,
+.item-list .price {
+  width: 15%;
+}
+.item-list p {
+  padding: 2rem;
+}
+.trash{
+  color: var(--purple);
+  font-size: 1rem;
+}
+.add-item{
+  width: 100%;
+}
+
+ div button{
+  border-radius: 25px;
+  color: var(--white);
+  font-weight: bold;
+  padding: 1rem 0;
+}
+.changes{
+  padding: 4rem 0 2rem 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.changes button{
+  padding: 0 1.5rem;
+}
+.changes button:first-child{
+  margin-right: auto;
+}
+.changes button:last-child{
+  background-color: var(--purple);
+}
+.changes button:nth-child(2){
+  background-color:#ffffff4d;
+}
+.payment-terms{
+  /* background-color: red; */
+}
+.error-message{
+  color: red;
+  font-size:10px
 }
