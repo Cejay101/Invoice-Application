@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export const useFetch = (url, method = "GET") => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState(null);
+  const [err, setErr] = useState(null);
   const [options, setOptions] = useState(null);
 
   const postData = (postData) => {
@@ -22,6 +22,15 @@ export const useFetch = (url, method = "GET") => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(putData),
+    });
+  };
+  const patchData = (patchData) => {
+    setOptions({
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(patchData),
     });
   };
 
@@ -49,14 +58,14 @@ export const useFetch = (url, method = "GET") => {
 
         setIsPending(false);
         setData(data);
-        setError(null);
+        setErr(null);
       } catch (err) {
         if (err.name === "AbortError") {
           // console.log(err);
           console.log("the fetch was aborted");
         } else {
           setIsPending(false);
-          setError("Could not fetch the data");
+          setErr("Could not fetch the data");
         }
       }
     };
@@ -66,7 +75,10 @@ export const useFetch = (url, method = "GET") => {
       fetchData();
     }
     if (
-      (method === "POST" || method === "PUT" || method === "DELETE") &&
+      (method === "POST" ||
+        method === "PUT" ||
+        method === "PATCH" ||
+        method === "DELETE") &&
       options
     ) {
       fetchData(options);
@@ -77,5 +89,5 @@ export const useFetch = (url, method = "GET") => {
     };
   }, [url, method, options]);
 
-  return { data, isPending, error, postData, putData, deleteData };
+  return { data, isPending, err, postData, putData, patchData, deleteData };
 };

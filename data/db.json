@@ -32,16 +32,15 @@
       "total": 1800.9
     },
     {
-      "id": "XM9141",
-      "createdAt": "2021-08-21",
+      "createdAt": "2023-05-04",
       "paymentDue": "2021-09-20",
       "description": "Graphic Design",
-      "paymentTerms": 30,
+      "paymentTerms": 14,
       "clientName": "Alex Grim",
       "clientEmail": "alexgrim@mail.com",
       "status": "pending",
       "senderAddress": {
-        "street": "19 Union Terrace",
+        "street": "19 Union Terrace hkjhkjl",
         "city": "London",
         "postCode": "E1 3EZ",
         "country": "United Kingdom"
@@ -50,23 +49,24 @@
         "street": "84 Church Way",
         "city": "Bradford",
         "postCode": "BD1 9PB",
-        "country": "United Kingdom"
+        "country": "Bradford"
       },
       "items": [
         {
-          "name": "Banner Design",
-          "quantity": 1,
-          "price": 156.0,
-          "total": 156.0
+          "itemName": "dfsdfas",
+          "quantity": 23,
+          "price": 232,
+          "total": 5336
         },
         {
-          "name": "Email Design",
-          "quantity": 2,
-          "price": 200.0,
-          "total": 400.0
+          "itemName": "",
+          "quantity": "",
+          "price": "",
+          "total": ""
         }
       ],
-      "total": 556.0
+      "total": 5336,
+      "id": "XM9141"
     },
     {
       "id": "RG0314",
@@ -161,8 +161,8 @@
         {
           "name": "Brand Guidelines",
           "quantity": 1,
-          "price": 2500.0,
-          "total": 2500.0
+          "price": 2500,
+          "total": 2500
         }
       ],
       "total": 4032.33
@@ -175,7 +175,7 @@
       "paymentTerms": 30,
       "clientName": "Thomas Wayne",
       "clientEmail": "thomas@dc.com",
-      "status": "pending",
+      "status": "paid",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",
@@ -228,6 +228,54 @@
         }
       ],
       "total": 3102.04
+    },
+    {
+      "createdAt": "2023-05-04",
+      "paymentDue": "2023-05-29",
+      "description": "hi",
+      "paymentTerms": 14,
+      "clientName": "cj",
+      "clientEmail": "clintonjoyfimie@gmail.com",
+      "status": "pending",
+      "senderAddress": {
+        "street": "No 6 New heaven street Port Harcourt",
+        "city": "Port Harcourt",
+        "postCode": "Ygf",
+        "country": "Nigeria"
+      },
+      "clientAddress": {
+        "street": "No 6 New heaven street Port Harcourt",
+        "city": "Port Harcourt",
+        "postCode": "Ygf",
+        "country": "Port Harcourt"
+      },
+      "items": [],
+      "total": "",
+      "id": "PP2476"
+    },
+    {
+      "id": "IR8605",
+      "createdAt": "2023-04-29",
+      "paymentDue": "2023-05-13",
+      "description": "sdf",
+      "paymentTerms": 14,
+      "clientName": "sdf",
+      "clientEmail": "clintonjoyfimie@gmail.com",
+      "status": "paid",
+      "senderAddress": {
+        "street": "No 6 New heaven street Port Harcourt",
+        "city": "Port Harcourt",
+        "postCode": "Ygf",
+        "country": "Nigeria"
+      },
+      "clientAddress": {
+        "street": "No 6 New heaven street Port Harcourt",
+        "city": "Port Harcourt",
+        "postCode": "Ygf",
+        "country": "Nigeria"
+      },
+      "items": [],
+      "total": 0
     }
   ]
 }

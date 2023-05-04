@@ -4,8 +4,9 @@
   --purple: #6262ef;
   --orange: #ff8c00;
   --green: #3f833f;
-  --light-background: #131330fa;
+  --light-background: #0a193d96;
   --dark-background: #050514fa;
+  --border-radius: 10px;
 }
 body {
   font-family: "Spartan", sans-serif;
@@ -39,6 +40,11 @@ a {
   width: 800px;
   margin: 0rem auto;
   min-height: 100vh;
+  max-height: 100vh;
+  overflow: scroll;
+}
+.dashboard::-webkit-scrollbar{
+  display: none;
 }
 header {
   display: flex;
@@ -66,7 +72,7 @@ header {
 }
 .new-invoice {
   background-color: var(--purple);
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 8px 10px;
 }
 .new-invoice div {
@@ -82,7 +88,7 @@ header {
 .invoice {
   background-color: var(--light-background);
   color: var(--white);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   margin-bottom: 1rem;
   display: flex;
   padding: 1rem 1.5rem;
@@ -105,7 +111,7 @@ header {
   justify-content: center;
   align-items: center;
   padding: 0.8rem;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   width: 15%;
   margin: auto;
   gap: 0.5rem;
@@ -225,6 +231,13 @@ label {
   display: flex;
   justify-content: space-between;
 }
+.sum-total{
+  font-size:1.2rem;
+  font-weight: bold;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 2rem;
+}
 input, button {
   height: 3rem;
   color: var(--white);
@@ -287,9 +300,6 @@ form .location {
 }
 .changes button:nth-child(2){
   background-color:#ffffff4d;
-}
-.payment-terms{
-  /* background-color: red; */
 }
 .error-message{
   color: red;
