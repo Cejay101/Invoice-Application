@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./FilterComponent.css";
+import { useTheme } from "../hooks/useTheme";
 
 export default function FilterComponent({ onFilterChange }) {
   const filterList = ["all", "draft", "pending", "paid"];
   const [selectedFilter, setSelectedFilter] = useState("all");
-
+ const {mode}=useTheme();
   const handleFilterChange = (event) => {
     const { value } = event.target;
     setSelectedFilter(value);
@@ -15,7 +16,10 @@ export default function FilterComponent({ onFilterChange }) {
   };
 
   return (
-    <div className="filter-selector">
+    <div
+      className={`filter-selector ${mode}`}
+      style={{ background: mode === "light" ? "#eaecf8" : "" }}
+    >
       {filterList.map((filter) => (
         <label key={filter}>
           <input
