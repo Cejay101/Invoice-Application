@@ -62,7 +62,7 @@ export default function NewInvoice({ createInvoice, edit }) {
   const [projectDescription, setProjectDescription] = useState("");
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState("");
-  console.log(items);
+
   const [error, setError] = useState(false);
 
   const Post = (status) => {
@@ -293,7 +293,7 @@ export default function NewInvoice({ createInvoice, edit }) {
     edit ? edit.paymentDue : ""
   );
   return (
-    <aside>
+    <aside className={mode}>
       <div
         className={`add-invoice ${mode} ${createInvoice ? "display" : "hide"} `}
       >
@@ -541,7 +541,14 @@ export default function NewInvoice({ createInvoice, edit }) {
             </div>
             <div className="changes">
               <button onClick={handleDiscard}>Discard</button>
-              {!edit && <button onClick={handleDraft}>Save as Draft</button>}
+              {!edit && (
+                <button
+                  style={{ background: mode === "light" ? "#363A52" : "" }}
+                  onClick={handleDraft}
+                >
+                  Save as Draft
+                </button>
+              )}
               {edit ? (
                 <button onClick={handleEdit}>Save Changes</button>
               ) : (

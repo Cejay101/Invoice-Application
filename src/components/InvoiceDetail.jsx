@@ -1,5 +1,7 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
+import { useTheme } from "../hooks/useTheme";
+
 import { useState } from "react";
 import "./InvoiceDetail.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +10,7 @@ import NewInvoice from "./NewInvoice";
 
 export default function InvoiceDetail() {
   const { id } = useParams();
+  const {mode}=useTheme();
     const [createInvoice, setCreateInvoice] = useState(false);
    const navigate = useNavigate();
   const url = "http://localhost:3000/Data/" + id;
@@ -45,19 +48,23 @@ const {deleteData} =useFetch(url,"DELETE")
     window.location.reload();
   }
   return (
-    <div className="invoice-detail">
+    <div className={`invoice-detail ${mode}`}>
       {isPending && <div>Loading.....</div>}
       {error && <div>{error}</div>}
-      <Link to="/" className="go-back">
+      <Link to="/" className={`go-back ${mode}`}>
         <FontAwesomeIcon
           icon={faAngleLeft}
           style={{ color: "var(--purple)" }}
         />
         Go back
       </Link>
+      <p></p>
       {data && (
         <header>
-          <div className=" container state">
+          <div
+            className={`container state`}
+            style={{ background: mode === "light" ? "#fff" : "" }}
+          >
             <p>Status</p>
             <div
               className="status"
@@ -73,7 +80,7 @@ const {deleteData} =useFetch(url,"DELETE")
                     ? "#3f833f30"
                     : data.status === "pending"
                     ? "#ff8c0030"
-                    : "#ffffff30",
+                    : `#${mode ==="light"?"999":"ffffff30"}`,
               }}
             >
               <div
@@ -91,7 +98,14 @@ const {deleteData} =useFetch(url,"DELETE")
             </div>
             <div className="header-option">
               {data.status !== "paid" && (
-                <button onClick={handleInvoice} className="edit">
+                <button
+                  onClick={handleInvoice}
+                  className="edit"
+                  style={{
+                    background: mode === "light" ? "#373B53" : "",
+                    color: mode === "light" ? "#fff" : "",
+                  }}
+                >
                   Edit
                 </button>
               )}
@@ -108,8 +122,11 @@ const {deleteData} =useFetch(url,"DELETE")
         </header>
       )}
       {data && (
-        <main>
-          <div className="container">
+        <main style={{ background: mode === "light" ? "#fff" : "" }}>
+          <div
+            className="container"
+            style={{ background: mode === "light" ? "#fff" : "" }}
+          >
             <div className="location">
               <div className="id">
                 <p>#{id}</p>
@@ -148,7 +165,10 @@ const {deleteData} =useFetch(url,"DELETE")
                 <p className="big-font">{data.clientEmail}</p>
               </div>
             </div>
-            <div className="items">
+            <div
+              className="items"
+              style={{ background: mode === "light" ? "#F9FAFE" : "" }}
+            >
               <div className="item-list" key={Math.random()}>
                 <div className="item-name">
                   <p className="title">Item Name</p>
@@ -182,7 +202,13 @@ const {deleteData} =useFetch(url,"DELETE")
                 );
               })}
 
-              <div className="amount-due">
+              <div
+                className="amount-due"
+                style={{
+                  background: mode === "light" ? "#373B53" : "",
+                  color: mode === "light" ? "#fff" : "",
+                }}
+              >
                 <p className="title">Amount Due</p>
                 <p className="big-font">{formatCurrency(data.total)}</p>
               </div>

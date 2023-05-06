@@ -10,10 +10,12 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import NewInvoice from "./components/NewInvoice";
 import { Link } from "react-router-dom";
+import FilterComponent from "./components/FilterComponent";
 
 export default function Dashboard() {
-  const { filterOpen, setFilterOpen } = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
   const [createInvoice, setCreateInvoice] = useState(false);
+  const [activeFilter, setActiveFilter] = useState("all");
   const { data, isPending, err } = useFetch("http://localhost:3000/Data");
   const { mode } = useTheme();
   const invoiceDetail = () => {
@@ -35,10 +37,23 @@ export default function Dashboard() {
       })
     );
   }
+  const handleFilterChange = (filter) => {
+    setActiveFilter(filter);
+  };
+
+  const filteredInvoices = data
+    ? data.filter((invoice) =>
+        activeFilter === "all" ? true : invoice.status === activeFilter
+      )
+    : [];
+
   const handleInvoice = () => {
     setCreateInvoice(!createInvoice);
   };
   useEffect(() => {}, [createInvoice]);
+  const handleOpenFilter = () => {
+    setFilterOpen(!filterOpen);
+  };
   return (
     <div className={`dashboard ${mode}`}>
       <header className="dashboard-header">
@@ -47,12 +62,21 @@ export default function Dashboard() {
           {data && <p>{`There are ${data.length} total invoice`}</p>}
         </div>
         <div className="title-side">
-          <div className="filter">
-            <p>Filter by status </p>
-            <FontAwesomeIcon
-              className="icon"
-              icon={filterOpen ? faAngleUp : faAngleDown}
-            />
+          <div className="filter-details">
+            <div
+              className={`filter ${filterOpen ? "filteropen" : ""}`}
+              style={{ cursor: "pointer" }}
+              onClick={handleOpenFilter}
+            >
+              <p>Filter by status </p>
+              <FontAwesomeIcon
+                className={`icon`}
+                icon={filterOpen ? faAngleUp : faAngleDown}
+              />
+            </div>
+            {filterOpen && (
+              <FilterComponent onFilterChange={handleFilterChange} />
+            )}
           </div>
 
           <div onClick={handleInvoice} className="new-invoice">
@@ -67,10 +91,14 @@ export default function Dashboard() {
         {isPending && <div>Loading ....</div>}
         {err && <div>{err}</div>}
         {data && (
-          <ul className="invoices">
-            {data.map((invoice) => (
+          <ul className={`invoices `}>
+            {filteredInvoices.map((invoice) => (
               <li key={invoice.id} onClick={invoiceDetail}>
-                <Link className="invoice" to={`./invoice/${invoice.id}`}>
+                <Link
+                  className={`invoice ${mode}`}
+                  style={{ background: mode === "light" ? "#fff" : "" }}
+                  to={`./invoice/${invoice.id}`}
+                >
                   <p className="id">#{invoice.id}</p>
                   <p>Due {formatDate(` ${invoice.paymentDue}`)}</p>
                   <p>{invoice.clientName}</p>
@@ -103,9 +131,7 @@ export default function Dashboard() {
                             : "var(--white)",
                       }}
                     ></div>
-                    <p>
-                      {invoice.status}
-                    </p>
+                    <p>{invoice.status}</p>
                   </div>
                   <FontAwesomeIcon className="icon" icon={faAngleRight} />
                 </Link>

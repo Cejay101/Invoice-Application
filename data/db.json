@@ -199,37 +199,6 @@
       "total": 6155.91
     },
     {
-      "id": "FV2353",
-      "createdAt": "2021-11-05",
-      "paymentDue": "2021-11-12",
-      "description": "Logo Re-design",
-      "paymentTerms": 7,
-      "clientName": "Anita Wainwright",
-      "clientEmail": "",
-      "status": "draft",
-      "senderAddress": {
-        "street": "19 Union Terrace",
-        "city": "London",
-        "postCode": "E1 3EZ",
-        "country": "United Kingdom"
-      },
-      "clientAddress": {
-        "street": "",
-        "city": "",
-        "postCode": "",
-        "country": ""
-      },
-      "items": [
-        {
-          "name": "Logo Re-design",
-          "quantity": 1,
-          "price": 3102.04,
-          "total": 3102.04
-        }
-      ],
-      "total": 3102.04
-    },
-    {
       "createdAt": "2023-05-04",
       "paymentDue": "2023-05-29",
       "description": "hi",
@@ -252,30 +221,6 @@
       "items": [],
       "total": "",
       "id": "PP2476"
-    },
-    {
-      "id": "IR8605",
-      "createdAt": "2023-04-29",
-      "paymentDue": "2023-05-13",
-      "description": "sdf",
-      "paymentTerms": 14,
-      "clientName": "sdf",
-      "clientEmail": "clintonjoyfimie@gmail.com",
-      "status": "paid",
-      "senderAddress": {
-        "street": "No 6 New heaven street Port Harcourt",
-        "city": "Port Harcourt",
-        "postCode": "Ygf",
-        "country": "Nigeria"
-      },
-      "clientAddress": {
-        "street": "No 6 New heaven street Port Harcourt",
-        "city": "Port Harcourt",
-        "postCode": "Ygf",
-        "country": "Nigeria"
-      },
-      "items": [],
-      "total": 0
     }
   ]
 }
