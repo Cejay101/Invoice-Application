@@ -59,7 +59,7 @@ export default function Dashboard() {
       <header className="dashboard-header">
         <div className="title">
           <h2>Invoices</h2>
-          {data && <p>{`There are ${data.length} total invoice`}</p>}
+          {data && <p><span className="cut-text">There are</span>{`${data.length} `}<span className="cut-text"> total</span>invoice</p>}
         </div>
         <div className="title-side">
           <div className="filter-details">
@@ -68,7 +68,9 @@ export default function Dashboard() {
               style={{ cursor: "pointer" }}
               onClick={handleOpenFilter}
             >
-              <p>Filter by status </p>
+              <p>
+                Filter <span className="cut-text">by status</span>
+              </p>
               <FontAwesomeIcon
                 className={`icon`}
                 icon={filterOpen ? faAngleUp : faAngleDown}
@@ -83,63 +85,133 @@ export default function Dashboard() {
             <div>
               <FontAwesomeIcon className="icon" icon={faPlus} />
             </div>
-            <p>New Invoice</p>
+            <p>
+              New <span className="cut-text">Invoice</span>{" "}
+            </p>
           </div>
         </div>
       </header>
-      <main>
-        {isPending && <div>Loading ....</div>}
-        {err && <div>{err}</div>}
-        {data && (
-          <ul className={`invoices `}>
-            {filteredInvoices.map((invoice) => (
-              <li key={invoice.id} onClick={invoiceDetail}>
-                <Link
-                  className={`invoice ${mode}`}
-                  style={{ background: mode === "light" ? "#fff" : "" }}
-                  to={`./invoice/${invoice.id}`}
-                >
-                  <p className="id">#{invoice.id}</p>
-                  <p>Due {formatDate(` ${invoice.paymentDue}`)}</p>
-                  <p>{invoice.clientName}</p>
-                  <p className="total">{formatCurrency(`${invoice.total}`)}</p>
-                  <div
-                    className="status"
-                    style={{
-                      color:
-                        invoice.status === "paid"
-                          ? "var(--green)"
-                          : invoice.status === "pending"
-                          ? "var(--orange)"
-                          : "var(--white)",
-                      background:
-                        invoice.status === "paid"
-                          ? "#3f833f30"
-                          : invoice.status === "pending"
-                          ? "#ff8c0030"
-                          : "#ffffff30",
-                    }}
+      {
+        <main className="desktop">
+          {isPending && <div>Loading ....</div>}
+          {err && <div>{err}</div>}
+          {data && (
+            <ul className={`invoices `}>
+              {filteredInvoices.map((invoice) => (
+                <li key={invoice.id} onClick={invoiceDetail}>
+                  <Link
+                    className={`invoice ${mode}`}
+                    style={{ background: mode === "light" ? "#fff" : "" }}
+                    to={`./invoice/${invoice.id}`}
                   >
+                    <p className="id">#{invoice.id}</p>
+                    <p>Due {formatDate(` ${invoice.paymentDue}`)}</p>
+                    <p>{invoice.clientName}</p>
+                    <p className="total">
+                      {formatCurrency(`${invoice.total}`)}
+                    </p>
                     <div
-                      className="dot"
+                      className="status"
                       style={{
-                        background:
+                        color:
                           invoice.status === "paid"
                             ? "var(--green)"
                             : invoice.status === "pending"
                             ? "var(--orange)"
                             : "var(--white)",
+                        background:
+                          invoice.status === "paid"
+                            ? "#3f833f30"
+                            : invoice.status === "pending"
+                            ? "#ff8c0030"
+                            : "#ffffff30",
                       }}
-                    ></div>
-                    <p>{invoice.status}</p>
-                  </div>
-                  <FontAwesomeIcon className="icon" icon={faAngleRight} />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </main>
+                    >
+                      <div
+                        className="dot"
+                        style={{
+                          background:
+                            invoice.status === "paid"
+                              ? "var(--green)"
+                              : invoice.status === "pending"
+                              ? "var(--orange)"
+                              : "var(--white)",
+                        }}
+                      ></div>
+                      <p>{invoice.status}</p>
+                    </div>
+                    <FontAwesomeIcon className="icon" icon={faAngleRight} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </main>
+      }
+      {
+        <main className="mobile">
+          {isPending && <div>Loading ....</div>}
+          {err && <div>{err}</div>}
+          {data && (
+            <ul className={`invoices `}>
+              {filteredInvoices.map((invoice) => (
+                <li key={invoice.id} onClick={invoiceDetail}>
+                  <Link
+                    className={`invoice ${mode}`}
+                    style={{ background: mode === "light" ? "#fff" : "" }}
+                    to={`./invoice/${invoice.id}`}
+                  >
+                    <div className="id-name">
+                      <p className="id">#{invoice.id}</p>
+                      <p>{invoice.clientName}</p>
+                    </div>
+                    <div className="date-total-stat">
+                      <div className="date-total">
+                        <p>Due {formatDate(` ${invoice.paymentDue}`)}</p>
+                        <p className="total">
+                          {formatCurrency(`${invoice.total}`)}
+                        </p>
+                      </div>
+                      <div
+                        className="status"
+                        style={{
+                          color:
+                            invoice.status === "paid"
+                              ? "var(--green)"
+                              : invoice.status === "pending"
+                              ? "var(--orange)"
+                              : "var(--white)",
+                          background:
+                            invoice.status === "paid"
+                              ? "#3f833f30"
+                              : invoice.status === "pending"
+                              ? "#ff8c0030"
+                              : "#ffffff30",
+                        }}
+                      >
+                        <div
+                          className="dot"
+                          style={{
+                            background:
+                              invoice.status === "paid"
+                                ? "var(--green)"
+                                : invoice.status === "pending"
+                                ? "var(--orange)"
+                                : "var(--white)",
+                          }}
+                        ></div>
+                        <p>{invoice.status}</p>
+                      </div>
+                    </div>
+                    <FontAwesomeIcon className="icon" icon={faAngleRight} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </main>
+      }
+
       <div
         onClick={() => {
           setCreateInvoice(false);

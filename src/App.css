@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300;600;700&display=swap");
 :root {
   --white: #ebf0f7;
-  --purple: #7C5DFA;
-  --orange: #F18F34;
+  --purple: #7c5dfa;
+  --orange: #f18f34;
   --green: #3f833f;
-  --gray:#373B53;
-  --lightmode:#F8F8FB;
-  --light-background: #1D2139;
+  --gray: #373b53;
+  --lightmode: #f8f8fb;
+  --light-background: #1d2139;
   --dark-background: #141625;
   --border-radius: 10px;
 }
@@ -28,6 +28,9 @@ a {
   text-decoration: none;
   color: var(--white);
 }
+ul {
+  list-style: none;
+}
 
 /* .dark {
   transition: 0.5s;
@@ -35,13 +38,15 @@ a {
 } */
 /* dashboard */
 .dashboard {
-  width: 800px;
+  max-width: 860px;
+
   margin: 0rem auto;
+  padding: 0rem 2rem;
   min-height: 100vh;
   max-height: 100vh;
   overflow: scroll;
 }
-.dashboard::-webkit-scrollbar{
+.dashboard::-webkit-scrollbar {
   display: none;
 }
 header {
@@ -50,8 +55,51 @@ header {
   align-items: center;
   padding: 2rem 0;
   padding-top: 4rem;
+  width: 100%;
 }
 
+main {
+  width: 100%;
+}
+.desktop {
+  display: block;
+}
+.mobile {
+  display: none;
+}
+.mobile .invoice{
+  display: block;
+}
+.mobile .invoice p{
+ width: 100%;
+}
+.mobile .invoice .total{
+ text-align: left;
+}
+.mobile .id-name, .mobile .date-total-stat{
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+}
+.mobile .date-total-stat .date-total{
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: flex-start;
+}
+.mobile .id-name{
+  margin-bottom: 2rem;
+}
+.mobile .id-name p:last-child{
+  text-align: right;
+}
+.mobile .icon{
+  display: none;
+}
+.mobile .status{
+  margin: 0;
+}
 .title h2 {
   margin-bottom: 10px;
   font-size: 2rem;
@@ -68,10 +116,10 @@ header {
   column-gap: 1rem;
   font-weight: bold;
 }
-.filteropen{
+.filteropen {
   transform: rotate(360deg);
 }
-.filter-details{
+.filter-details {
   display: flex;
   position: relative;
 }
@@ -117,7 +165,7 @@ header {
   align-items: center;
   padding: 0.8rem;
   border-radius: var(--border-radius);
-  width: 15%;
+  width: 6rem;
   margin: auto;
   gap: 0.5rem;
 }
@@ -177,7 +225,7 @@ header {
 }
 
 /* Add Invoice */
-.overlay{
+.overlay {
   z-index: 1;
   width: 100vw;
   height: 100vh;
@@ -193,16 +241,16 @@ header {
   height: 100vh;
   top: 0;
   left: 0;
-  overflow:scroll;
+  overflow: scroll;
   z-index: 1;
 }
 .add-invoice::-webkit-scrollbar {
   display: none;
 }
-.hide{
-  left: -100vh;
+.hide {
+  left: -500vw;
 }
-.display{
+.display {
   left: 0;
   transition: 1s;
 }
@@ -215,8 +263,8 @@ form {
   display: flex;
   flex-direction: column;
 }
-.add-invoice{
-  background-color:var(--dark-background);
+.add-invoice {
+  background-color: var(--dark-background);
 }
 .add-invoice h2 {
   font-size: 1.5rem;
@@ -235,18 +283,19 @@ label {
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
-.span{
+.span {
   display: flex;
   justify-content: space-between;
 }
-.sum-total{
-  font-size:1.2rem;
+.sum-total {
+  font-size: 1.2rem;
   font-weight: bold;
   justify-content: center;
   gap: 2rem;
   margin: 1rem 2rem;
 }
-input, button {
+input,
+button {
   height: 3rem;
   color: var(--white);
   border-radius: 5px;
@@ -277,45 +326,91 @@ form .location {
 .item-list p {
   padding: 2rem;
 }
-.trash{
+.trash {
   color: var(--purple);
   font-size: 1rem;
 }
-.add-item{
+.add-item {
   width: 100%;
 }
 
- div button{
+div button {
   border-radius: 25px;
   color: var(--white);
   font-weight: bold;
   padding: 1rem 0;
 }
-.changes{
+.changes {
   padding: 4rem 0 2rem 0;
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
-.changes button{
+.changes button {
   padding: 0 1.5rem;
 }
-.changes button:first-child{
+.changes button:first-child {
   margin-right: auto;
 }
-.changes button:last-child{
+.changes button:last-child {
   background-color: var(--purple);
 }
-.changes button:nth-child(2){
-  background-color:#ffffff4d;
+.changes button:nth-child(2) {
+  background-color: #ffffff4d;
 }
-.error-message{
+.error-message {
   color: red;
-  font-size:10px
+  font-size: 10px;
 }
 .light {
   /* background-color:var(--lightmode); */
   color: var(--dark-background);
   background-color: var(--lightmode);
+}
+@media screen and (max-width: 1400px) {
+  .sidebar {
+    width: 100%;
+    height: 80px;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 0 0 20px 20px;
+  }
+  .sidebar img {
+    margin: 20px;
+  }
+  .line {
+    width: 2px;
+    height: 100%;
+  }
+  .logo {
+    width: 80px;
+    left: 0;
+  }
+  header {
+    margin-top: 5rem;
+  }
+}
 
+@media screen and (max-width: 850px) {
+  form{
+    display: none;
+  }
+  .invoice {
+  }
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+  
+}
+
+@media screen and (max-width: 700px) {
+.title h2{
+  font-size: 1.3rem;
+}
+.cut-text{
+  display: none;
+}
 }
