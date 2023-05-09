@@ -67,37 +67,38 @@ main {
 .mobile {
   display: none;
 }
-.mobile .invoice{
+.mobile .invoice {
   display: block;
 }
-.mobile .invoice p{
- width: 100%;
+.mobile .invoice p {
+  width: 100%;
 }
-.mobile .invoice .total{
- text-align: left;
+.mobile .invoice .total {
+  text-align: left;
 }
-.mobile .id-name, .mobile .date-total-stat{
+.mobile .id-name,
+.mobile .date-total-stat {
   display: flex;
   justify-content: space-between;
 
   align-items: center;
 }
-.mobile .date-total-stat .date-total{
+.mobile .date-total-stat .date-total {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
   justify-content: flex-start;
 }
-.mobile .id-name{
+.mobile .id-name {
   margin-bottom: 2rem;
 }
-.mobile .id-name p:last-child{
+.mobile .id-name p:last-child {
   text-align: right;
 }
-.mobile .icon{
+.mobile .icon {
   display: none;
 }
-.mobile .status{
+.mobile .status {
   margin: 0;
 }
 .title h2 {
@@ -297,6 +298,7 @@ label {
 input,
 button {
   height: 3rem;
+  width: 100%;
   color: var(--white);
   border-radius: 5px;
   padding: 0 0.5rem;
@@ -307,8 +309,6 @@ button {
 form .location {
   display: flex;
   justify-content: space-between;
-  /* gap: 2rem; */
-  /* max-width: 90%; */
 }
 .item-list {
   display: flex;
@@ -368,6 +368,11 @@ div button {
   background-color: var(--lightmode);
 }
 @media screen and (max-width: 1400px) {
+  form {
+    /* margin:0 ;
+    margin-right:0 ; */
+    padding: 0;
+  }
   .sidebar {
     width: 100%;
     height: 80px;
@@ -392,9 +397,6 @@ div button {
 }
 
 @media screen and (max-width: 850px) {
-  form{
-    display: none;
-  }
   .invoice {
   }
   .desktop {
@@ -403,14 +405,27 @@ div button {
   .mobile {
     display: block;
   }
-  
 }
 
 @media screen and (max-width: 700px) {
-.title h2{
-  font-size: 1.3rem;
-}
-.cut-text{
-  display: none;
-}
+  .title h2 {
+    font-size: 1.3rem;
+  }
+  .cut-text {
+    display: none;
+  }
+  .add-invoice {
+    width: 100vw;
+  }
+  form {
+    padding: 1rem;
+    padding-top: 5rem;
+    width: 100%;
+  }
+  form .location {
+    gap: 4px;
+  }
+  form .location input {
+  /* width: 50%; */
+  }
 }

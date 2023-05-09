@@ -140,6 +140,8 @@ const {deleteData} =useFetch(url,"DELETE")
               </div>
             </div>
             <div className="details">
+              <div className="date-bill">
+
               <div className="dates">
                 <div className="invoice-date">
                   <p>invoice date</p>
@@ -160,6 +162,7 @@ const {deleteData} =useFetch(url,"DELETE")
                   <p>{data.clientAddress.country}</p>
                 </div>
               </div>
+              </div>
               <div className="sent-to">
                 <p>Sent to </p>
                 <p className="big-font">{data.clientEmail}</p>
@@ -169,6 +172,8 @@ const {deleteData} =useFetch(url,"DELETE")
               className="items"
               style={{ background: mode === "light" ? "#F9FAFE" : "" }}
             >
+              <div className="item-lists">
+
               <div className="item-list" key={Math.random()}>
                 <div className="item-name">
                   <p className="title">Item Name</p>
@@ -202,6 +207,7 @@ const {deleteData} =useFetch(url,"DELETE")
                 );
               })}
 
+</div>
               <div
                 className="amount-due"
                 style={{

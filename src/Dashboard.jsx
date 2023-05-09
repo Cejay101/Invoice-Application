@@ -59,7 +59,7 @@ export default function Dashboard() {
       <header className="dashboard-header">
         <div className="title">
           <h2>Invoices</h2>
-          {data && <p><span className="cut-text">There are</span>{`${data.length} `}<span className="cut-text"> total</span>invoice</p>}
+          {data && <p><span className="cut-text">There are </span>{`${data.length} `}<span className="cut-text"> total</span> invoice</p>}
         </div>
         <div className="title-side">
           <div className="filter-details">
